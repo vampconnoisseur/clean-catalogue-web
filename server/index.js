@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes
 app.get("/", (req, res) => {
-  console.log("WOrking");
   res.status(200).json({ message: "Home route working " });
 });
 
