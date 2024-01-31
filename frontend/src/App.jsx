@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import { useAuth } from "@clerk/clerk-react";
+import Welcome from "./pages/Welcome";
+import "./components/navbar.css";
+
 
 function App() {
   const { isSignedIn } = useAuth();
@@ -10,10 +13,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           {isSignedIn ? (
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/upload" element={<Welcome />} />
           ) : (
             <Route path="/" element={<Landing />} />
           )}
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

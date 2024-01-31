@@ -18,13 +18,13 @@ const Landing = () => {
         </p>
         <div className="flex justify-center">
           <SignInButton
-            afterSignInUrl="/dashboard"
-            afterSignUpUrl="/dashboard"
+            afterSignInUrl="/upload"
+            afterSignUpUrl="/upload"
             className="py-2 px-4 bg-gray-200 text-black rounded-md mr-4"
           />
           <SignOutButton
-            afterSignInUrl="/dashboard"
-            afterSignUpUrl="/dashboard"
+            afterSignInUrl="/"
+            afterSignUpUrl="/"
             className="py-2 px-4 bg-blue-500 text-white rounded-md"
           />
           <img
