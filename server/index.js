@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { ConnectToDB } = require("./config/database");
@@ -17,6 +18,8 @@ app.get("/", (req, res) => {
 
 app.use("/", require("./routes/user/createUser"));
 app.use("/", require("./routes/user/getUser"));
+app.use("/catalogue", require("./routes/catalogue/getCatalogue"));
+app.use("/catalogue", require("./routes/catalogue/addCatalogue"));
 
 const startServer = async () => {
   await ConnectToDB();
