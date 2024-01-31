@@ -20,6 +20,7 @@ app.use("/", require("./routes/user/createUser"));
 app.use("/", require("./routes/user/getUser"));
 app.use("/catalogue", require("./routes/catalogue/getCatalogue"));
 app.use("/catalogue", require("./routes/catalogue/addCatalogue"));
+app.use("/catalogue", require("./routes/catalogue/getAllCataloguesOfUser"));
 
 const startServer = async () => {
   await ConnectToDB();
