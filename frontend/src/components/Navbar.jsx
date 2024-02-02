@@ -47,8 +47,8 @@ const Navbar = () => {
           </div>
         ) : (
           <SignInButton
-            afterSignInUrl="/dashboard"
-            afterSignUpUrl="/dashboard"
+            afterSignInUrl="/upload"
+            afterSignUpUrl="/upload"
             className="py-2 px-4 bg-white text-black rounded-md shadow-inner"
           />
         )}
