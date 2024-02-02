@@ -3,22 +3,35 @@ require("dotenv").config();
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 
-const IMAGES = [
-  {
-    type: "image_url",
-    image_url: {
-      url: "https://res.cloudinary.com/df3lxtjcl/image/upload/v1706621084/hqnz3aiowtfopakxlgc7.jpg",
-    },
-  },
-  {
-    type: "image_url",
-    image_url: {
-      url: "https://res.cloudinary.com/df3lxtjcl/image/upload/v1706621074/zeokmnmqw67qk3l4wuy2.jpg",
-    },
-  },
-];
+// const IMAGES = [
+//   {
+//     type: "image_url",
+//     image_url: {
+//       url: "https://res.cloudinary.com/df3lxtjcl/image/upload/v1706621084/hqnz3aiowtfopakxlgc7.jpg",
+//     },
+//   },
+//   {
+//     type: "image_url",
+//     image_url: {
+//       url: "https://res.cloudinary.com/df3lxtjcl/image/upload/v1706621074/zeokmnmqw67qk3l4wuy2.jpg",
+//     },
+//   },
+// ];
 
-async function main() {
+async function scanCatalogueWithAI({ images }) {
+  let IMAGES = [];
+  images.forEach((x) => {
+    // console.log(x);
+    IMAGES.push({
+      type: "image_url",
+      image_url: {
+        url: x.image_url,
+      },
+    });
+  });
+
+  // console.log(IMAGES);
+
   const response = await openai.chat.completions.create({
     model: "gpt-4-vision-preview",
     messages: [
@@ -36,7 +49,7 @@ async function main() {
         content: [
           {
             type: "text",
-            text: "Catalog Scoring Mechanism Parameters: Product Descriptions, Pricing Information, Product Images,Layout and Design, Discounts and Promotions, Brand Consistency, Contact Information and Call-to-Action,Typos and Grammar,Legal Compliance, AreaOfImprovement. Following image urls are the images of a catalogue and now use this mechanism and apply it to this catalogue and score between 0 and 100 in first 9 parameters and provide a helpful message for the 'AreaOfImprovement' parameter.",
+            text: "Catalog Scoring Mechanism Parameters: Product Descriptions, Pricing Information, Product Images,Layout and Design, Discounts and Promotions, Brand Consistency, Contact Information and Call-to-Action,Typos and Grammar,Legal Compliance, AreaOfImprovement. Following image urls are the images of a catalogue and now use this mechanism and apply it to this catalogue and score between 0 and 100 in first 9 parameters, provide just the scores for each property and provide a helpful message for the 'AreaOfImprovement' parameter.",
           },
           ...IMAGES,
           //   {
@@ -129,15 +142,7 @@ async function main() {
   const json = JSON.parse(functionCall.arguments);
 
   console.log(json);
-
-  //   console.log(json.BrandConsistency);
-  //   console.log(json.ContactInformationAndCallToAction);
-  //   console.log(json.DiscountsAndPromotions);
-  //   console.log(json.LayoutAndDesign);
-  //   console.log(json.LegalCompliance);
-  //   console.log(json.PricingInformation);
-  //   console.log(json.ProductDescriptions);
-  //   console.log(json.ProductImages);
-  //   console.log(json.TyposAndGrammar);
+  return json;
+  // return images;
 }
-main();
+module.exports = { scanCatalogueWithAI };

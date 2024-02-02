@@ -1,15 +1,17 @@
-const { response } = require("../../data/placeholder");
+// const { response } = require("../../data/placeholder");
 const { Catalogue } = require("../../models/Catalogue");
+const { scanCatalogueWithAI } = require("../../services/vision");
 const addCatalogue = async (req, res) => {
   try {
     const { catalogue_name, catalogue_description, images, userId } = req.body;
 
-    // Get the result from vision.js here later
+    // GPT response added
+    const responseAI = await scanCatalogueWithAI({ images });
     const catalogue = await new Catalogue({
       catalogue_name,
       catalogue_description,
       userId,
-      ...response,
+      ...responseAI,
       imageUrl: [...images],
     });
 
