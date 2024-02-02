@@ -14,7 +14,7 @@ const Dashboard = () => {
       });
       console.log(response);
     } catch (error) {
-      console.log(error.response.status);
+      console.log(error.response);
     }
   };
 
@@ -29,11 +29,12 @@ const Dashboard = () => {
         <p>Id : {user.id}</p>
         <p>Email Address : {user.primaryEmailAddress.emailAddress}</p>
         <p>Profile Image</p>
-        <img
-          src={user.imageUrl}
+        <p>Full name : </p>
+        {/* <img
+          src={user?.imageUrl}
           className="w-12 h-12 rounded-full"
           alt="Profile Image"
-        />
+        /> */}
       </div>
       <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
