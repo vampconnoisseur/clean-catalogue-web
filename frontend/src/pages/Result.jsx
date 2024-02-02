@@ -9,13 +9,13 @@ const Result = () => {
       <Navbar />
       <div>
         <main className="my-4 flex flex-col items-center h-full">
-          <div className="bg-white text-black font-semibold py-2 px-4 text-2xl z-10 relative top-3 rounded-lg">
+          <div className="bg-white text-black py-2 px-4 font-serif text-3xl z-10 relative top-3 rounded-lg">
             <h2>Result</h2>
           </div>
           <section className="bg-blue-500 text-white p-4 rounded-lg w-3/5 h-1/4 relative">
             <div className="flex flex-col items-center">
               {/* File upload button */}
-              <div className=" bg-white text-black font-semibold mt-2 w-full px-4 py-2 rounded relative z-10 flex flex-row justify-between">
+              <div className=" bg-white text-black font-semibold font-sans mt-2 w-full px-4 py-2 rounded relative z-10 flex flex-row justify-between">
                 <div>
                   <p>1. Image1</p>
                 </div>
@@ -25,11 +25,13 @@ const Result = () => {
               </div>
             </div>
           </section>
-          <div className="bg-white text-black font-semibold py-2 px-4 text-2xl z-10 relative top-4 rounded-lg">
+          <div className="bg-white text-black py-2 px-4 font-serif text-3xl z-10 relative top-4 rounded-lg">
             <h3>Catalogue Score</h3>
           </div>
-          <section className="bg-blue-500 px-6 py-4 border border-gray-300 rounded-lg relative flex flex-col items-center w-3/5">
-            {/* Form fields */}
+          <section
+            className="bg-blue-500 px-6 py-4 border border-gray-300 rounded-lg relative flex flex-col items-center w-3/5
+          font-sans"
+          >
             <div className="w-full p-2 bg-white rounded-lg mt-5 mb-2">
               <div className="p-4 mb-4">
                 <div htmlFor="catalogueName" className="block text-black">

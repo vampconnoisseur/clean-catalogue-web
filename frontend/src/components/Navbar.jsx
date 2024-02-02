@@ -24,17 +24,17 @@ const Navbar = () => {
             <div>
               <a
                 href="/upload"
-                className={`nav-link ml-4 ${
+                className={`nav-link ml-4 font-semibold ${
                   getCurrentPathname() === "/upload" ? "active" : ""
                 }`}
               >
-                Home
+                Upload
               </a>
             </div>
             <div>
               <a
                 href="/dashboard"
-                className={`nav-link ml-4  ${
+                className={`nav-link ml-4 font-semibold ${
                   getCurrentPathname() === "/dashboard" ? "active" : ""
                 }`}
               >

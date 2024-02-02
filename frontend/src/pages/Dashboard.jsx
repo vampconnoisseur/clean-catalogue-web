@@ -2,6 +2,7 @@ import { SignIn, useUser } from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import catalogueLogo from "../assets/catalogue-logo.svg";
 
 const Dashboard = () => {
   const { user } = useUser();
@@ -11,6 +12,7 @@ const Dashboard = () => {
         name: user.fullName,
         email: user.primaryEmailAddress.emailAddress,
         authID: user.id,
+        profileImage: user.imageUrl,
       });
       console.log(response);
     } catch (error) {
@@ -24,19 +26,86 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar />
-      <div>
-        <p>Name : {user.fullName}</p>
-        <p>Id : {user.id}</p>
-        <p>Email Address : {user.primaryEmailAddress.emailAddress}</p>
-        <p>Profile Image</p>
-        <p>Full name : </p>
-        {/* <img
-          src={user?.imageUrl}
-          className="w-12 h-12 rounded-full"
-          alt="Profile Image"
-        /> */}
-      </div>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
+      <main className="my-4 flex flex-col items-center h-full">
+        <div className="bg-white text-black py-2 px-4 text-3xl z-10 relative top-3 rounded-lg font-serif">
+          <h2>User Information</h2>
+        </div>
+        <section className="bg-blue-500 text-black py-4 px-4 rounded-lg w-3/5 relative">
+          <div className="flex flex-col items-center">
+            <div className=" bg-white font-sans text-black font-semibold text-xl mt-3 w-full px-4 py-2 m-2 rounded-lg relative z-10 flex flex-col justify-between">
+              <p>Name : {user.fullName}</p>
+              <p className="mt-3">
+                Email Address : {user.primaryEmailAddress.emailAddress}
+              </p>
+              <img
+                src={user?.imageUrl}
+                className="w-16 h-16 mb-2 rounded-full absolute top-2 right-6"
+                alt="Profile Image"
+              />
+            </div>
+          </div>
+        </section>
+        <div className="bg-white text-black py-2 px-4 text-3xl z-10 relative top-4 rounded-lg font-serif">
+          <h3>History</h3>
+        </div>
+        <section className="bg-blue-500 px-6 py-4 border font-mono font-semibold border-gray-300 rounded-lg relative flex flex-col items-center w-3/5">
+          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
+            <div className="flex">
+              <img
+                src={catalogueLogo}
+                className="w-10 h-10 m-2"
+                alt="catalogue logo"
+              />
+              <div className="p-4">Scan 1:</div>
+            </div>
+            <div className="p-4">Date: 02/02/2024</div>
+          </button>
+          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
+            <div className="flex">
+              <img
+                src={catalogueLogo}
+                className="w-10 h-10 m-2"
+                alt="catalogue logo"
+              />
+              <div className="p-4">Scan 2:</div>
+            </div>
+            <div className="p-4">Date: 02/02/2024</div>
+          </button>
+          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
+            <div className="flex">
+              <img
+                src={catalogueLogo}
+                className="w-10 h-10 m-2"
+                alt="catalogue logo"
+              />
+              <div className="p-4">Scan 3:</div>
+            </div>
+            <div className="p-4">Date: 02/02/2024</div>
+          </button>
+          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
+            <div className="flex">
+              <img
+                src={catalogueLogo}
+                className="w-10 h-10 m-2"
+                alt="catalogue logo"
+              />
+              <div className="p-4">Scan 4:</div>
+            </div>
+            <div className="p-4">Date: 02/02/2024</div>
+          </button>
+          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
+            <div className="flex">
+              <img
+                src={catalogueLogo}
+                className="w-10 h-10 m-2"
+                alt="catalogue logo"
+              />
+              <div className="p-4">Scan 5:</div>
+            </div>
+            <div className="p-4">Date: 02/02/2024</div>
+          </button>
+        </section>
+      </main>
     </div>
   );
 };

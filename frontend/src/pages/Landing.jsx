@@ -15,24 +15,19 @@ const Landing = () => {
       <div>
         <Navbar />
         <div className="container mx-auto text-center py-12">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4 mt-20">
+          <h1 className="text-4xl lg:text-5xl font-semibold mb-4 mt-32 font-serif">
             WELCOME TO CLEAN CATALOGUE!
           </h1>
-          <p className="text-lg text-gray-700 mb-8">
+          <p className="text-lg text-gray-700 mb-8 font-serif">
             Elevate catalog management: AI-driven scanning and scoring for
-            insights and efficiency. <br></br> Streamline operations and
-            optimize performance with ease.
+            insights and efficiency. <br /> Streamline operations and optimize
+            performance with ease.
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center text-lg font-sans font-bold">
             <SignInButton
               afterSignInUrl="/upload"
               afterSignUpUrl="/upload"
-              className="py-2 px-4 bg-gray-200 text-black rounded-md mr-4"
-            />
-            <SignOutButton
-              afterSignInUrl="/"
-              afterSignUpUrl="/"
-              className="py-2 px-4 bg-blue-500 text-white rounded-md"
+              className="py-2 px-4 bg-blue-500 text-white rounded-md mr-4 hover:shadow-lg shadow-slate-950 transition-shadow duration-300 ease-in-out"
             />
             <img
               src={imageBottomRight}
