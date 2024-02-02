@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import { useAuth } from "@clerk/clerk-react";
 import Welcome from "./pages/Welcome";
 import "./components/navbar.css";
+import Result from "./pages/Result";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Landing />} />
           )}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/result" element={<Result />} />
         </Routes>
       </BrowserRouter>
     </div>
