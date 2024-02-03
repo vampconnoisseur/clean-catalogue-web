@@ -49,7 +49,7 @@ async function scanCatalogueWithAI({ images }) {
         content: [
           {
             type: "text",
-            text: "Catalog Scoring Mechanism Parameters: Product Descriptions, Pricing Information, Product Images,Layout and Design, Discounts and Promotions, Brand Consistency, Contact Information and Call-to-Action,Typos and Grammar,Legal Compliance, AreaOfImprovement. Following image urls are the images of a catalogue and now use this mechanism and apply it to this catalogue and score between 0 and 100 in first 9 parameters, provide just the scores for each property and provide a helpful message for the 'AreaOfImprovement' parameter.",
+            text: "Catalog Scoring Mechanism Parameters: Product Descriptions, Pricing Information, Product Images,Layout and Design, Discounts and Promotions, Brand Consistency, Contact Information and Call-to-Action,Typos and Grammar,Legal Compliance, AreaOfImprovement. Following image urls are the images of a catalogue and now use this mechanism and apply it to this catalogue and score between 0 and 100 in first 9 parameters, provide just the scores for each property and provide a helpful message for the 'AreaOfImprovement' parameter. If any of the images does not seem to be of a catalogue, just provide the message in the areaOfImprovement and give 0 to rest of the scores.",
           },
           ...IMAGES,
           //   {
