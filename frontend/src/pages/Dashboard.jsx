@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import catalogueLogo from "../assets/catalogue-logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useUser();
+  const [catalogues, setCatalogues] = useState([]);
   const hanldeCreateUser = async () => {
     try {
       const response = await axios.post("http://localhost:3000/user/create", {
@@ -20,8 +22,21 @@ const Dashboard = () => {
     }
   };
 
+  const getAllCatalogues = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/catalogue/all/${user.id}`
+      );
+      console.log(response);
+      setCatalogues(response.data.catalogues);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     hanldeCreateUser();
+    getAllCatalogues();
   }, []);
   return (
     <div>
@@ -49,7 +64,10 @@ const Dashboard = () => {
           <h3>History</h3>
         </div>
         <section className="bg-blue-500 px-6 py-4 border font-mono font-semibold border-gray-300 rounded-lg relative flex flex-col items-center w-3/5">
-          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
+          {catalogues?.map((catalogue, index) => {
+            return <ScanListItem key={index} catalogue={catalogue} />;
+          })}
+          {/* <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
             <div className="flex">
               <img
                 src={catalogueLogo}
@@ -103,10 +121,32 @@ const Dashboard = () => {
               <div className="p-4">Scan 5:</div>
             </div>
             <div className="p-4">Date: 02/02/2024</div>
-          </button>
+          </button> */}
         </section>
       </main>
     </div>
+  );
+};
+
+const ScanListItem = ({ catalogue }) => {
+  const navigate = useNavigate();
+  return (
+    <button
+      className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between"
+      onClick={() => {
+        navigate(`/result/${catalogue._id}`);
+      }}
+    >
+      <div className="flex">
+        <img
+          src={catalogueLogo}
+          className="w-10 h-10 m-2"
+          alt="catalogue logo"
+        />
+        <div className="p-4">Scan 1: {catalogue.catalogue_name}</div>
+      </div>
+      <div className="p-4">Date: 02/02/2024</div>
+    </button>
   );
 };
 

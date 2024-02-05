@@ -16,6 +16,24 @@ const Welcome = () => {
   const CLOUD_PRESET = import.meta.env.VITE_UPLOAD_PRESET;
   const { user } = useUser();
 
+  const hanldeCreateUser = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/user/create", {
+        name: user.fullName,
+        email: user.primaryEmailAddress.emailAddress,
+        authID: user.id,
+        profileImage: user.imageUrl,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  useEffect(() => {
+    hanldeCreateUser();
+  }, []);
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
