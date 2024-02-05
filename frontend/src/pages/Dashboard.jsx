@@ -67,61 +67,6 @@ const Dashboard = () => {
           {catalogues?.map((catalogue, index) => {
             return <ScanListItem key={index} catalogue={catalogue} />;
           })}
-          {/* <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
-            <div className="flex">
-              <img
-                src={catalogueLogo}
-                className="w-10 h-10 m-2"
-                alt="catalogue logo"
-              />
-              <div className="p-4">Scan 1:</div>
-            </div>
-            <div className="p-4">Date: 02/02/2024</div>
-          </button>
-          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
-            <div className="flex">
-              <img
-                src={catalogueLogo}
-                className="w-10 h-10 m-2"
-                alt="catalogue logo"
-              />
-              <div className="p-4">Scan 2:</div>
-            </div>
-            <div className="p-4">Date: 02/02/2024</div>
-          </button>
-          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
-            <div className="flex">
-              <img
-                src={catalogueLogo}
-                className="w-10 h-10 m-2"
-                alt="catalogue logo"
-              />
-              <div className="p-4">Scan 3:</div>
-            </div>
-            <div className="p-4">Date: 02/02/2024</div>
-          </button>
-          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
-            <div className="flex">
-              <img
-                src={catalogueLogo}
-                className="w-10 h-10 m-2"
-                alt="catalogue logo"
-              />
-              <div className="p-4">Scan 4:</div>
-            </div>
-            <div className="p-4">Date: 02/02/2024</div>
-          </button>
-          <button className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between">
-            <div className="flex">
-              <img
-                src={catalogueLogo}
-                className="w-10 h-10 m-2"
-                alt="catalogue logo"
-              />
-              <div className="p-4">Scan 5:</div>
-            </div>
-            <div className="p-4">Date: 02/02/2024</div>
-          </button> */}
         </section>
       </main>
     </div>
@@ -130,6 +75,7 @@ const Dashboard = () => {
 
 const ScanListItem = ({ catalogue }) => {
   const navigate = useNavigate();
+  const date = new Date(catalogue.createdOn);
   return (
     <button
       className="w-full bg-white rounded-lg mt-5 mb-2 flex flex-row justify-between"
@@ -145,7 +91,7 @@ const ScanListItem = ({ catalogue }) => {
         />
         <div className="p-4">Scan 1: {catalogue.catalogue_name}</div>
       </div>
-      <div className="p-4">Date: 02/02/2024</div>
+      <div className="p-4">Date: {date.toDateString()}</div>
     </button>
   );
 };

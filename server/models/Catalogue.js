@@ -20,6 +20,8 @@ const CatalogueSchema = mongoose.Schema({
   TyposAndGrammar: { type: Number },
   LegalCompliance: { type: Number },
   areaOfImprovement: { type: String },
+  score: { type: String },
+  createdOn: { type: Date, default: new Date() },
 });
 
 const Catalogue = mongoose.model("Catalogue", CatalogueSchema);

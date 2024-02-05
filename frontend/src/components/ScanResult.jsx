@@ -63,7 +63,13 @@ const ScanResult = ({ catalogue }) => {
               <div className="absolute top-28 right-40 w-48">
                 <div className="gauge">
                   <div className="gauge__body">
-                    <Gauge />
+                    <Gauge
+                      score={
+                        catalogueResult.catalogue.score
+                          ? catalogueResult.catalogue.score
+                          : 0.75
+                      }
+                    />
                   </div>
                 </div>
               </div>

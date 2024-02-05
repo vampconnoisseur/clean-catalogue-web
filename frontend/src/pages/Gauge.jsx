@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Gauge.css";
 
-const Gauge = () => {
-  const [gaugeValue, setGaugeValue] = useState(0.75);
+const Gauge = ({ score }) => {
+  const [gaugeValue, setGaugeValue] = useState(score / 100);
 
   const updateGauge = (value) => {
     if (value < 0 || value > 1) {
