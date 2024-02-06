@@ -5,13 +5,15 @@ import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
 import Gauge from "./Gauge";
 import ScanResult from "../components/ScanResult";
+import { TailSpin } from "react-loader-spinner";
 
 const Welcome = () => {
   const [img, setImg] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [showResultSection, setShowResultSection] = useState(false);
-  const [catalogueResult, setCatalogueResult] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [catalogueResult, setCatalogueResult] = useState({});
   const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
   const CLOUD_PRESET = import.meta.env.VITE_UPLOAD_PRESET;
   const { user } = useUser();
@@ -37,6 +39,7 @@ const Welcome = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setIsLoading(true);
       const formData = new FormData();
       formData.append("upload_preset", CLOUD_PRESET);
       formData.append("file", img);
@@ -57,6 +60,7 @@ const Welcome = () => {
 
       console.log(res);
       setCatalogueResult(res.data.catalogue);
+      setIsLoading(false);
       setShowResultSection(true);
     } catch (error) {
       console.log(error);
@@ -141,7 +145,20 @@ const Welcome = () => {
                   type="submit"
                   className="mt-3 text-xl bg-blue-500 text-white font-semibold px-5 py-2 rounded z-10 shadow-xl hover:shadow-none transition-shadow duration-300 ease-in-out"
                 >
-                  Scan
+                  {isLoading ? (
+                    <TailSpin
+                      visible={true}
+                      height="30"
+                      width="80"
+                      color="#fff"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                    />
+                  ) : (
+                    "Scan"
+                  )}
                 </button>
               </div>
             </form>
