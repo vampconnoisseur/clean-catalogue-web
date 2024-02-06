@@ -1,4 +1,4 @@
-import { SignIn, useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
@@ -8,9 +8,10 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const { user } = useUser();
   const [catalogues, setCatalogues] = useState([]);
+  const BASE_API = import.meta.env.VITE_BASE_API;
   const hanldeCreateUser = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/user/create", {
+      const response = await axios.post(`${BASE_API}/user/create`, {
         name: user.fullName,
         email: user.primaryEmailAddress.emailAddress,
         authID: user.id,
@@ -24,9 +25,7 @@ const Dashboard = () => {
 
   const getAllCatalogues = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/catalogue/all/${user.id}`
-      );
+      const response = await axios.get(`${BASE_API}/catalogue/all/${user.id}`);
       console.log(response);
       setCatalogues(response.data.catalogues);
     } catch (error) {

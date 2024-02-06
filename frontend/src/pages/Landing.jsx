@@ -16,12 +16,14 @@ const Landing = () => {
         <Navbar />
         <div className="container mx-auto text-center py-12">
           <h1 className="text-4xl lg:text-5xl font-semibold mb-4 mt-32 font-serif">
-            WELCOME TO CLEAN CATALOGUE!
+            {"WELCOME TO CLEAN CATALOGUE!"}
           </h1>
           <p className="text-lg text-gray-700 mb-8 font-serif">
-            Elevate catalog management: AI-driven scanning and scoring for
-            insights and efficiency. <br /> Streamline operations and optimize
-            performance with ease.
+            {`Elevate catalog management: AI-driven scanning and scoring for
+            insights and efficiency.`}{" "}
+            <br />{" "}
+            {`Streamline operations and optimize
+            performance with ease.`}
           </p>
           <div className="flex justify-center text-lg font-sans font-bold">
             <SignInButton
