@@ -6,6 +6,7 @@ import ScanResult from "../components/ScanResult";
 import { TailSpin } from "react-loader-spinner";
 
 const Welcome = () => {
+  const { isSignedIn } = useUser();
   const [img, setImg] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -67,89 +68,94 @@ const Welcome = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    isSignedIn && (
       <div>
-        <main className="my-4 flex flex-col items-center h-full">
-          <div className="bg-white text-black font-serif py-2 px-4 text-3xl z-10 relative top-3 rounded-lg">
-            <h2>Test Your Catalogue</h2>
-          </div>
-          <section className="bg-blue-500 text-white p-4 rounded-lg w-3/5 h-1/4 relative">
-            <div className="flex flex-col items-center justify-center py-4">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  setImg(e.target.files[0]);
-                }}
-              />
+        <Navbar />
+        <div>
+          <main className="my-4 flex flex-col items-center h-full">
+            <div className="bg-white text-black font-serif py-2 px-4 text-3xl z-10 relative top-3 rounded-lg">
+              <h2>Test Your Catalogue</h2>
             </div>
-          </section>
-          <div className="bg-white text-black font-serif py-2 px-4 text-3xl z-10 relative top-4 rounded-lg">
-            <h3>Enter the Data</h3>
-          </div>
-          <section className="bg-blue-500 px-6 py-4 border border-gray-300 rounded-lg relative flex flex-col items-center w-3/5">
-            <form
-              onSubmit={handleSubmit}
-              className="w-full p-2 bg-white rounded-lg mt-5 mb-2 font-sans"
-            >
-              <div className="p-4 mb-4">
-                <label
-                  htmlFor="catalogueName"
-                  className="block mt-2 text-black"
-                >
-                  Name of the Catalogue:
-                </label>
+            <section className="bg-blue-500 text-white p-4 rounded-lg w-3/5 h-1/4 relative">
+              <div className="flex flex-col items-center justify-center py-4">
                 <input
-                  type="text"
-                  id="catalogueName"
-                  name="catalogueName"
-                  className="border border-slate-700 rounded-md shadow-xl p-1 w-full"
+                  type="file"
+                  accept="image/*"
                   onChange={(e) => {
-                    setName(e.target.value);
+                    setImg(e.target.files[0]);
                   }}
                 />
-                <label htmlFor="description" className="block mt-2 text-black">
-                  Description:
-                </label>
-                <textarea
-                  id="description"
-                  name="description"
-                  rows="3"
-                  cols="50"
-                  className="border border-slate-700 rounded-md shadow-xl p-1 w-full"
-                  onChange={(e) => {
-                    setDescription(e.target.value);
-                  }}
-                ></textarea>
               </div>
-              <div className="w-full text-center">
-                <button
-                  type="submit"
-                  className="mt-3 text-xl bg-blue-500 text-white font-semibold px-5 py-2 rounded z-10 shadow-xl hover:shadow-none transition-shadow duration-300 ease-in-out"
-                >
-                  {isLoading ? (
-                    <TailSpin
-                      visible={true}
-                      height="30"
-                      width="80"
-                      color="#fff"
-                      ariaLabel="tail-spin-loading"
-                      radius="1"
-                      wrapperStyle={{}}
-                      wrapperClass=""
-                    />
-                  ) : (
-                    "Scan"
-                  )}
-                </button>
-              </div>
-            </form>
-          </section>
-        </main>
+            </section>
+            <div className="bg-white text-black font-serif py-2 px-4 text-3xl z-10 relative top-4 rounded-lg">
+              <h3>Enter the Data</h3>
+            </div>
+            <section className="bg-blue-500 px-6 py-4 border border-gray-300 rounded-lg relative flex flex-col items-center w-3/5">
+              <form
+                onSubmit={handleSubmit}
+                className="w-full p-2 bg-white rounded-lg mt-5 mb-2 font-sans"
+              >
+                <div className="p-4 mb-4">
+                  <label
+                    htmlFor="catalogueName"
+                    className="block mt-2 text-black"
+                  >
+                    Name of the Catalogue:
+                  </label>
+                  <input
+                    type="text"
+                    id="catalogueName"
+                    name="catalogueName"
+                    className="border border-slate-700 rounded-md shadow-xl p-1 w-full"
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                  />
+                  <label
+                    htmlFor="description"
+                    className="block mt-2 text-black"
+                  >
+                    Description:
+                  </label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    rows="3"
+                    cols="50"
+                    className="border border-slate-700 rounded-md shadow-xl p-1 w-full"
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
+                  ></textarea>
+                </div>
+                <div className="w-full text-center">
+                  <button
+                    type="submit"
+                    className="mt-3 text-xl bg-blue-500 text-white font-semibold px-5 py-2 rounded z-10 shadow-xl hover:shadow-none transition-shadow duration-300 ease-in-out"
+                  >
+                    {isLoading ? (
+                      <TailSpin
+                        visible={true}
+                        height="30"
+                        width="80"
+                        color="#fff"
+                        ariaLabel="tail-spin-loading"
+                        radius="1"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                    ) : (
+                      "Scan"
+                    )}
+                  </button>
+                </div>
+              </form>
+            </section>
+          </main>
+        </div>
+        {showResultSection && <ScanResult catalogue={catalogueResult} />}
       </div>
-      {showResultSection && <ScanResult catalogue={catalogueResult} />}
-    </div>
+    )
   );
 };
 

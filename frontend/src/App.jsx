@@ -14,18 +14,10 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          {isSignedIn ? (
-            <>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/upload" element={<Welcome />} />
-              <Route path="/" element={<Landing />} />
-              <Route path="/result/:id" element={<Result />} />
-            </>
-          ) : (
-            <>
-              <Route path="/" element={<Landing />} />
-            </>
-          )}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/upload" element={<Welcome />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/result/:id" element={<Result />} />
         </Routes>
       </BrowserRouter>
     </div>
