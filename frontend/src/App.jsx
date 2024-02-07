@@ -22,7 +22,9 @@ function App() {
               <Route path="/result" element={<Result />} />
             </>
           ) : (
-            <Route path="/" element={<Landing />} />
+            <>
+              <Route path="/" element={<Landing />} />
+            </>
           )}
         </Routes>
       </BrowserRouter>

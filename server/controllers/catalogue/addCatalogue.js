@@ -22,12 +22,23 @@ const addCatalogue = async (req, res) => {
         }
       );
 
-      res
-        .status(200)
-        .json({ message: "Catalogue updated successfully", catalogue: existingCatalogue });
-    }
-    else {
+      res.status(200).json({
+        message: "Catalogue updated successfully",
+        catalogue: existingCatalogue,
+      });
+    } else {
       responseAI = await scanCatalogueWithAI({ images });
+
+      let score =
+        0.2 * responseAI.ProductDescriptions +
+        0.2 * responseAI.PricingInformation +
+        0.15 * responseAI.ProductImages +
+        0.1 * responseAI.LayoutAndDesign +
+        0.1 * responseAI.DiscountsAndPromotions +
+        0.1 * responseAI.BrandConsistency +
+        0.05 * responseAI.ContactInformationAndCallToAction +
+        0.05 * responseAI.TyposAndGrammar +
+        0.05 * responseAI.LegalCompliance;
 
       const catalogue = await new Catalogue({
         catalogue_name,
@@ -35,6 +46,7 @@ const addCatalogue = async (req, res) => {
         userId,
         ...responseAI,
         imageUrl: [...images],
+        score,
       });
 
       await catalogue.save();
