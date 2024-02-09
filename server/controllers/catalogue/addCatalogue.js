@@ -20,7 +20,7 @@ const addCatalogue = async (req, res) => {
             imageUrl: [...images],
           },
         },
-        { new: true },
+        { new: true }
       );
 
       res.status(200).json({
