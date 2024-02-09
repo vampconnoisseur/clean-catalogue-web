@@ -12,19 +12,20 @@ const addCatalogue = async (req, res) => {
     if (existingCatalogue != null) {
       responseAI = await scanCatalogueWithAI({ images });
 
-      await Catalogue.findOneAndUpdate(
+      const newCatalogue = await Catalogue.findOneAndUpdate(
         { _id: existingCatalogue._id },
         {
           $set: {
             ...responseAI,
             imageUrl: [...images],
           },
-        }
+        },
+        { new: true }
       );
 
       res.status(200).json({
         message: "Catalogue updated successfully",
-        catalogue: existingCatalogue,
+        catalogue: newCatalogue,
       });
     } else {
       responseAI = await scanCatalogueWithAI({ images });
